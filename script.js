@@ -6,17 +6,19 @@ async function scan() {
     result.innerHTML = "Scan en cours...";
 
     try {
-        let res = await fetch(`http://127.0.0.1:5000/scan?target=${target}&ports=${ports}`);
+        let res = await fetch(`https://port-scanner-jen6.onrender.com/scan?target=${target}&ports=${ports}`);
         let data = await res.json();
 
         let html = "";
+
         for (let port in data) {
-            html += `Port ${port} : ${data[port]}<br>`;
+            let color = data[port] === "open" ? "lime" : "red";
+            html += `<p style="color:${color}">Port ${port} : ${data[port]}</p>`;
         }
 
         result.innerHTML = html;
 
     } catch {
-        result.innerHTML = "Erreur serveur";
+        result.innerHTML = "❌ Erreur serveur";
     }
 }
