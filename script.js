@@ -1,23 +1,22 @@
 async function scan() {
     let target = document.getElementById("target").value;
     let ports = document.getElementById("ports").value;
-    let resultDiv = document.getElementById("result");
+    let result = document.getElementById("result");
 
-    resultDiv.innerHTML = "Scan en cours...";
+    result.innerHTML = "Scan en cours...";
 
     try {
-        let response = await fetch(`http://127.0.0.1:5000/scan?target=${target}&ports=${ports}`);
-        let data = await response.json();
+        let res = await fetch(`http://127.0.0.1:5000/scan?target=${target}&ports=${ports}`);
+        let data = await res.json();
 
         let html = "";
-
         for (let port in data) {
             html += `Port ${port} : ${data[port]}<br>`;
         }
 
-        resultDiv.innerHTML = html;
+        result.innerHTML = html;
 
     } catch {
-        resultDiv.innerHTML = "Erreur de connexion au serveur";
+        result.innerHTML = "Erreur serveur";
     }
 }
