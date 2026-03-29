@@ -8,6 +8,7 @@ Interactive port scanner built with Python and Flask.
 - Scan multiple ports
 - Web API
 - Fast and simple
+- With limits
 
 ## Usage
 Run:
